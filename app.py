@@ -24,7 +24,7 @@ REPUTATION_DB_PATH = os.path.join(BASE_DIR, "reputation_database.json") # calea 
 BASELINE_DB_PATH = os.path.join(BASE_DIR, "siteuri_oficiale.json") # calea către fișierul cu "amprentele" site-urilor oficiale
 DOMENII_SIGURE_PATH = os.path.join(BASE_DIR, "domenii_sigure.json")
 
-sys.stderr = open(os.path.join(BASE_DIR, "python_errors.log"), "a")
+#sys.stderr = open(os.path.join(BASE_DIR, "python_errors.log"), "a")
 
 load_dotenv(os.path.join(BASE_DIR, ".env"))
 API_KEY_OPENAI = os.getenv("OPENAI_API_KEY")
@@ -179,7 +179,8 @@ def extrage_caracteristici(url, take_screenshot=False):
             
             browser.close()
     except Exception as e:
-        sys.stderr.write(f"Eroare Playwright pt {url}: {str(e)}\n")
+        # Folosim print standard ca să apară în log-urile de pe Render
+        print(f"🔥 EROARE CRITICĂ PLAYWRIGHT pt {url}: {str(e)}", flush=True)
         return (None, None) if take_screenshot else None
         
     return (caracteristici, screenshot_base64) if take_screenshot else caracteristici
@@ -220,7 +221,7 @@ def agent_ai_analiza(url):
             )
             domeniu_ai = raspuns_vision.choices[0].message.content.strip().lower()
         except Exception as e:
-            sys.stderr.write(f"Eroare Vision AI: {str(e)}\n")
+            print(f"🔥 EROARE CRITICĂ VISION AI pt {url}: {str(e)}", flush=True)
 
     # 3. Găsim site-ul oficial (după domeniu, nu după nume) și extragem datele
     date_reale = None
