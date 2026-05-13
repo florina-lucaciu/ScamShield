@@ -123,10 +123,18 @@ def extrage_caracteristici(url, take_screenshot=False):
     try:
         with sync_playwright() as p:
             browser = p.chromium.launch(headless=True)
+
+            #context care imită un utilizator real
+            context = browser.new_context(
+                user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+                viewport={'width': 1920, 'height': 1080}
+            )
+
+            # deschidem un nou tab
             page = browser.new_page()
             
             # răspunsul navigării 
-            raspuns = page.goto(url, timeout=15000) 
+            raspuns = page.goto(url, timeout=30000, wait_until="domcontentloaded") 
             
             # extragem detaliile certificatului (dacă există)
             if raspuns and raspuns.security_details():
@@ -507,28 +515,28 @@ def scaneaza():
         tip_actiune = date_primite.get('tip_actiune', 'analiza')
         text_primit = date_primite.get('text', '').strip()
 
-        # RAMURA 1: CHAT
+        # 1: CHAT
         if tip_actiune == 'chat':
             raspuns_ai = asistent_chat_phishing(text_primit)
             return jsonify({"tip": "chat_response", "echo": raspuns_ai})
 
-        # RAMURA 2: ANALIZĂ TEXT DIN PAGINĂ
+        # 2: ANALIZĂ TEXT DIN PAGINĂ
         if tip_actiune == 'analiza_text':
             raspuns_text = asistent_analiza_text(text_primit)
             return jsonify({"tip": "final", "echo": raspuns_text, "scor_rapid": 50})
 
-        # RAMURA 3: ANALIZĂ LINK
+        # 3: ANALIZĂ LINK
         if tip_actiune == 'analiza':
             if text_primit.startswith("http") or text_primit.startswith("file://"):
-                # Analiza rapidă (euristică)
+                # analiza rapidă
                 scor_rapid, status_rapid = simulate_ai_analysis(text_primit)
                 
-                # Aici declanșăm analiza grea cu Playwright și OpenAI
+                # analiza cu Playwright și OpenAI
                 linkuri_de_procesat = [text_primit]
                 mesaje_ai = save_to_json(linkuri_de_procesat)
                 raspuns_final = "\n".join(mesaje_ai)
                 
-                # Returnăm direct rezultatul final (în cloud vom face analiza dintr-un singur apel HTTP lung)
+                # returnăm direct rezultatul final
                 return jsonify({
                     "tip": "final", 
                     "echo": raspuns_final, 
@@ -541,7 +549,7 @@ def scaneaza():
         sys.stderr.write(f"Eroare API: {str(e)}\n")
         return jsonify({"tip": "final", "echo": f"Eroare server Cloud: {str(e)}"})
 
-# Punctul de intrare pentru Render
+# --- PORNIRE SERVER ---
 if __name__ == "__main__":
     # Render setează automat variabila de mediu PORT
     port = int(os.environ.get("PORT", 10000))
