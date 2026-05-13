@@ -1,0 +1,576 @@
+{
+    "upt_student": {
+        "domeniu_oficial": "student.upt.ro",
+        "form_actions_sigure": [],
+        "medie_taguri": {
+            "img": 1,
+            "a": 1,
+            "script": 4
+        }
+    },
+    "banca_transilvania": {
+        "domeniu_oficial": "bancatransilvania.ro",
+        "form_actions_sigure": [],
+        "medie_taguri": {
+            "img": 0,
+            "a": 0,
+            "script": 0
+        }
+    },
+    "ing_bank": {
+        "domeniu_oficial": "ing.ro",
+        "form_actions_sigure": [],
+        "medie_taguri": {
+            "img": 43,
+            "a": 200,
+            "script": 40
+        }
+    },
+    "bcr": {
+        "domeniu_oficial": "bcr.ro",
+        "form_actions_sigure": [
+            "/ro/search"
+        ],
+        "medie_taguri": {
+            "img": 25,
+            "a": 139,
+            "script": 98
+        }
+    },
+    "raiffeisen": {
+        "domeniu_oficial": "raiffeisen.ro",
+        "form_actions_sigure": [],
+        "medie_taguri": {
+            "img": 28,
+            "a": 170,
+            "script": 27
+        }
+    },
+    "brd": {
+        "domeniu_oficial": "brd.ro",
+        "form_actions_sigure": [
+            "/search/node"
+        ],
+        "medie_taguri": {
+            "img": 97,
+            "a": 678,
+            "script": 39
+        }
+    },
+    "cec_bank": {
+        "domeniu_oficial": "cec.ro",
+        "form_actions_sigure": [],
+        "medie_taguri": {
+            "img": 0,
+            "a": 0,
+            "script": 0
+        }
+    },
+    "paypal": {
+        "domeniu_oficial": "paypal.com",
+        "form_actions_sigure": [],
+        "medie_taguri": {
+            "img": 9,
+            "a": 58,
+            "script": 26
+        }
+    },
+    "revolut": {
+        "domeniu_oficial": "revolut.com",
+        "form_actions_sigure": [],
+        "medie_taguri": {
+            "img": 1,
+            "a": 1,
+            "script": 3
+        }
+    },
+    "orange": {
+        "domeniu_oficial": "orange.ro",
+        "form_actions_sigure": [
+            "https://www.orange.ro/ux-admin/api/datocms/loveContactForm"
+        ],
+        "medie_taguri": {
+            "img": 73,
+            "a": 124,
+            "script": 29
+        }
+    },
+    "vodafone": {
+        "domeniu_oficial": "vodafone.ro",
+        "form_actions_sigure": [],
+        "medie_taguri": {
+            "img": 28,
+            "a": 78,
+            "script": 17
+        }
+    },
+    "digi": {
+        "domeniu_oficial": "digi.ro",
+        "form_actions_sigure": [],
+        "medie_taguri": {
+            "img": 30,
+            "a": 177,
+            "script": 34
+        }
+    },
+    "telekom": {
+        "domeniu_oficial": "telekom.ro",
+        "form_actions_sigure": [
+            ";customid=g6yhl0kljiXvyzPB4ol6250i2GjL7ngbhjeWKShTczWenx3BKyQE!-1275818090?_DARGS=/blocks/modal/portInModal.jsp.b2c_global_modal_port_step1_form#",
+            ";customid=g6yhl0kljiXvyzPB4ol6250i2GjL7ngbhjeWKShTczWenx3BKyQE!-1275818090?_DARGS=/blocks/modal/updateConsentsFixRenewalJourneyModal.jsp#",
+            "/;customid=g6yhl0kljiXvyzPB4ol6250i2GjL7ngbhjeWKShTczWenx3BKyQE!-1275818090?_DARGS=/blocks/modal/modalForgotPassword.jsp",
+            ";customid=g6yhl0kljiXvyzPB4ol6250i2GjL7ngbhjeWKShTczWenx3BKyQE!-1275818090?_DARGS=/blocks/registration/b2c/loginModal.jsp.modalLoginForm#",
+            "/;customid=g6yhl0kljiXvyzPB4ol6250i2GjL7ngbhjeWKShTczWenx3BKyQE!-1275818090?_DARGS=/blocks/modal/modalForgotUsername.jsp",
+            ";customid=g6yhl0kljiXvyzPB4ol6250i2GjL7ngbhjeWKShTczWenx3BKyQE!-1275818090?_DARGS=/blocks/modal/modalNotifyMePopup.jsp#",
+            "https://mobile.telekom.ro/delivery/formAction/newsletter/contact.php",
+            ";customid=g6yhl0kljiXvyzPB4ol6250i2GjL7ngbhjeWKShTczWenx3BKyQE!-1275818090?_DARGS=/blocks/modal/portInModal.jsp.b2c_global_modal_port_start_journey#",
+            "/search",
+            ";customid=g6yhl0kljiXvyzPB4ol6250i2GjL7ngbhjeWKShTczWenx3BKyQE!-1275818090?_DARGS=/blocks/modal/updateConsentsMobileRenewalJourneyModal.jsp#"
+        ],
+        "medie_taguri": {
+            "img": 74,
+            "a": 206,
+            "script": 72
+        }
+    },
+    "verizon": {
+        "domeniu_oficial": "verizon.com",
+        "form_actions_sigure": [],
+        "medie_taguri": {
+            "img": 23,
+            "a": 383,
+            "script": 43
+        }
+    },
+    "eon": {
+        "domeniu_oficial": "eon.ro",
+        "form_actions_sigure": [],
+        "medie_taguri": {
+            "img": 0,
+            "a": 2,
+            "script": 3
+        }
+    },
+    "engie": {
+        "domeniu_oficial": "engie.ro",
+        "form_actions_sigure": [
+            "https://www.engie.ro/"
+        ],
+        "medie_taguri": {
+            "img": 26,
+            "a": 228,
+            "script": 16
+        }
+    },
+    "hidroelectrica": {
+        "domeniu_oficial": "hidroelectrica.ro",
+        "form_actions_sigure": [
+            "/subscribe",
+            "/search"
+        ],
+        "medie_taguri": {
+            "img": 19,
+            "a": 150,
+            "script": 20
+        }
+    },
+    "ppc_energy": {
+        "domeniu_oficial": "ppcenergy.ro",
+        "form_actions_sigure": [
+            "https://www.ppcenergy.ro/"
+        ],
+        "medie_taguri": {
+            "img": 48,
+            "a": 418,
+            "script": 23
+        }
+    },
+    "anaf": {
+        "domeniu_oficial": "anaf.ro",
+        "form_actions_sigure": [],
+        "medie_taguri": {
+            "img": 67,
+            "a": 325,
+            "script": 37
+        }
+    },
+    "ghiseul_ro": {
+        "domeniu_oficial": "ghiseul.ro",
+        "form_actions_sigure": [],
+        "medie_taguri": {
+            "img": 0,
+            "a": 2,
+            "script": 4
+        }
+    },
+    "posta_romana": {
+        "domeniu_oficial": "posta-romana.ro",
+        "form_actions_sigure": [
+            "javascript:void(0)"
+        ],
+        "medie_taguri": {
+            "img": 15,
+            "a": 356,
+            "script": 33
+        }
+    },
+    "fan_courier": {
+        "domeniu_oficial": "fancourier.ro",
+        "form_actions_sigure": [
+            "https://www.fancourier.ro/"
+        ],
+        "medie_taguri": {
+            "img": 53,
+            "a": 118,
+            "script": 35
+        }
+    },
+    "sameday": {
+        "domeniu_oficial": "sameday.ro",
+        "form_actions_sigure": [],
+        "medie_taguri": {
+            "img": 0,
+            "a": 2,
+            "script": 3
+        }
+    },
+    "emag": {
+        "domeniu_oficial": "emag.ro",
+        "form_actions_sigure": [
+            "/newsletter-subscribe-widget",
+            "/search"
+        ],
+        "medie_taguri": {
+            "img": 32,
+            "a": 186,
+            "script": 25
+        }
+    },
+    "ebay": {
+        "domeniu_oficial": "ebay.com",
+        "form_actions_sigure": [
+            "https://www.ebay.com/sch/i.html"
+        ],
+        "medie_taguri": {
+            "img": 40,
+            "a": 384,
+            "script": 31
+        }
+    },
+    "amazon": {
+        "domeniu_oficial": "amazon.com",
+        "form_actions_sigure": [],
+        "medie_taguri": {
+            "img": 0,
+            "a": 0,
+            "script": 3
+        }
+    },
+    "shopify": {
+        "domeniu_oficial": "shopify.com",
+        "form_actions_sigure": [],
+        "medie_taguri": {
+            "img": 75,
+            "a": 324,
+            "script": 6
+        }
+    },
+    "google": {
+        "domeniu_oficial": "google.com",
+        "form_actions_sigure": [
+            "/search"
+        ],
+        "medie_taguri": {
+            "img": 11,
+            "a": 23,
+            "script": 17
+        }
+    },
+    "microsoft": {
+        "domeniu_oficial": "microsoft.com",
+        "form_actions_sigure": [
+            "https://www.microsoft.com/ro-ro/search/explore"
+        ],
+        "medie_taguri": {
+            "img": 16,
+            "a": 115,
+            "script": 59
+        }
+    },
+    "apple_id": {
+        "domeniu_oficial": "appleid.apple.com",
+        "form_actions_sigure": [],
+        "medie_taguri": {
+            "img": 0,
+            "a": 0,
+            "script": 10
+        }
+    },
+    "yahoo": {
+        "domeniu_oficial": "yahoo.com",
+        "form_actions_sigure": [],
+        "medie_taguri": {
+            "img": 7,
+            "a": 6,
+            "script": 5
+        }
+    },
+    "icloud": {
+        "domeniu_oficial": "icloud.com",
+        "form_actions_sigure": [],
+        "medie_taguri": {
+            "img": 1,
+            "a": 0,
+            "script": 10
+        }
+    },
+    "dropbox": {
+        "domeniu_oficial": "dropbox.com",
+        "form_actions_sigure": [],
+        "medie_taguri": {
+            "img": 69,
+            "a": 133,
+            "script": 115
+        }
+    },
+    "protonmail": {
+        "domeniu_oficial": "proton.me",
+        "form_actions_sigure": [],
+        "medie_taguri": {
+            "img": 72,
+            "a": 181,
+            "script": 121
+        }
+    },
+    "instagram": {
+        "domeniu_oficial": "instagram.com",
+        "form_actions_sigure": [],
+        "medie_taguri": {
+            "img": 1,
+            "a": 20,
+            "script": 111
+        }
+    },
+    "facebook": {
+        "domeniu_oficial": "facebook.com",
+        "form_actions_sigure": [],
+        "medie_taguri": {
+            "img": 0,
+            "a": 36,
+            "script": 124
+        }
+    },
+    "messenger": {
+        "domeniu_oficial": "messenger.com",
+        "form_actions_sigure": [
+            "/login/password/"
+        ],
+        "medie_taguri": {
+            "img": 12,
+            "a": 63,
+            "script": 43
+        }
+    },
+    "snapchat": {
+        "domeniu_oficial": "snapchat.com",
+        "form_actions_sigure": [],
+        "medie_taguri": {
+            "img": 0,
+            "a": 44,
+            "script": 13
+        }
+    },
+    "twitter": {
+        "domeniu_oficial": "twitter.com",
+        "form_actions_sigure": [],
+        "medie_taguri": {
+            "img": 0,
+            "a": 24,
+            "script": 12
+        }
+    },
+    "linkedin": {
+        "domeniu_oficial": "linkedin.com",
+        "form_actions_sigure": [
+            "https://www.linkedin.com/uas/login-submit"
+        ],
+        "medie_taguri": {
+            "img": 8,
+            "a": 164,
+            "script": 7
+        }
+    },
+    "pinterest": {
+        "domeniu_oficial": "pinterest.com",
+        "form_actions_sigure": [],
+        "medie_taguri": {
+            "img": 48,
+            "a": 27,
+            "script": 77
+        }
+    },
+    "tiktok": {
+        "domeniu_oficial": "tiktok.com",
+        "form_actions_sigure": [
+            "/search"
+        ],
+        "medie_taguri": {
+            "img": 14,
+            "a": 31,
+            "script": 65
+        }
+    },
+    "reddit": {
+        "domeniu_oficial": "reddit.com",
+        "form_actions_sigure": [],
+        "medie_taguri": {
+            "img": 1,
+            "a": 1,
+            "script": 0
+        }
+    },
+    "vk": {
+        "domeniu_oficial": "vk.com",
+        "form_actions_sigure": [],
+        "medie_taguri": {
+            "img": 0,
+            "a": 8,
+            "script": 53
+        }
+    },
+    "badoo": {
+        "domeniu_oficial": "badoo.com",
+        "form_actions_sigure": [],
+        "medie_taguri": {
+            "img": 13,
+            "a": 81,
+            "script": 23
+        }
+    },
+    "line": {
+        "domeniu_oficial": "line.me",
+        "form_actions_sigure": [],
+        "medie_taguri": {
+            "img": 30,
+            "a": 39,
+            "script": 8
+        }
+    },
+    "yandex": {
+        "domeniu_oficial": "yandex.com",
+        "form_actions_sigure": [
+            "https://yandex.com/search/"
+        ],
+        "medie_taguri": {
+            "img": 0,
+            "a": 9,
+            "script": 24
+        }
+    },
+    "netflix": {
+        "domeniu_oficial": "netflix.com",
+        "form_actions_sigure": [],
+        "medie_taguri": {
+            "img": 3,
+            "a": 27,
+            "script": 14
+        }
+    },
+    "spotify": {
+        "domeniu_oficial": "spotify.com",
+        "form_actions_sigure": [],
+        "medie_taguri": {
+            "img": 0,
+            "a": 0,
+            "script": 11
+        }
+    },
+    "steam": {
+        "domeniu_oficial": "store.steampowered.com",
+        "form_actions_sigure": [
+            "https://store.steampowered.com/search"
+        ],
+        "medie_taguri": {
+            "img": 227,
+            "a": 342,
+            "script": 24
+        }
+    },
+    "playstation": {
+        "domeniu_oficial": "playstation.com",
+        "form_actions_sigure": [],
+        "medie_taguri": {
+            "img": 33,
+            "a": 195,
+            "script": 42
+        }
+    },
+    "twitch": {
+        "domeniu_oficial": "twitch.tv",
+        "form_actions_sigure": [],
+        "medie_taguri": {
+            "img": 1,
+            "a": 2,
+            "script": 74
+        }
+    },
+    "origin": {
+        "domeniu_oficial": "ea.com",
+        "form_actions_sigure": [],
+        "medie_taguri": {
+            "img": 58,
+            "a": 273,
+            "script": 92
+        }
+    },
+    "github": {
+        "domeniu_oficial": "github.com",
+        "form_actions_sigure": [],
+        "medie_taguri": {
+            "img": 0,
+            "a": 0,
+            "script": 0
+        }
+    },
+    "gitlab": {
+        "domeniu_oficial": "about.gitlab.com",
+        "form_actions_sigure": [],
+        "medie_taguri": {
+            "img": 48,
+            "a": 185,
+            "script": 15
+        }
+    },
+    "stackoverflow": {
+        "domeniu_oficial": "stackoverflow.com",
+        "form_actions_sigure": [],
+        "medie_taguri": {
+            "img": 0,
+            "a": 2,
+            "script": 3
+        }
+    },
+    "wordpress": {
+        "domeniu_oficial": "wordpress.com",
+        "form_actions_sigure": [
+            "https://wordpress.com/start/domain/domain-only/",
+            "#"
+        ],
+        "medie_taguri": {
+            "img": 42,
+            "a": 187,
+            "script": 27
+        }
+    },
+    "deviantart": {
+        "domeniu_oficial": "deviantart.com",
+        "form_actions_sigure": [
+            "https://www.deviantart.com/search"
+        ],
+        "medie_taguri": {
+            "img": 67,
+            "a": 239,
+            "script": 12
+        }
+    }
+}

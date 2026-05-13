@@ -1,0 +1,35 @@
+# SECURITATE
+.env
+__pycache__/
+*.py[cod]
+python_errors.log
+
+# FRONTEND
+manifest.json
+popup.html
+popup.js
+background.js
+content.js
+popup_js.txt
+app.txt
+
+# DATE ȘI ANTRENAMENT
+*.csv
+creare_dataset.py
+train_model.py
+build_baseline.py
+logs/
+tests/
+site-uri_de_test/
+extract_domains/
+html_page/
+reg/
+
+# CONFIGURĂRI WINDOWS
+run_python.bat
+ping_pong_host.json
+
+# ALTE FIȘIERE TEMPORARE
+.vscode/
+.idea/
+.DS_Store

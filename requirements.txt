@@ -1,0 +1,9 @@
+flask
+flask-cors
+gunicorn
+playwright
+openai
+python-dotenv
+pandas
+scikit-learn
+joblib
