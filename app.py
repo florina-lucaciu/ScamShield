@@ -122,7 +122,15 @@ def extrage_caracteristici(url, take_screenshot=False):
     
     try:
         with sync_playwright() as p:
-            browser = p.chromium.launch(headless=True)
+            browser = p.chromium.launch(
+                headless=True,
+                args=[
+                    "--no-sandbox", 
+                    "--disable-dev-shm-usage", 
+                    "--disable-gpu", 
+                    "--single-process"
+                ]
+            )
 
             #context care imită un utilizator real
             context = browser.new_context(
