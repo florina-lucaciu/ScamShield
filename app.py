@@ -26,7 +26,7 @@ DOMENII_SIGURE_PATH = os.path.join(BASE_DIR, "domenii_sigure.json")
 
 #sys.stderr = open(os.path.join(BASE_DIR, "python_errors.log"), "a")
 
-load_dotenv(os.path.join(BASE_DIR, ".env"))
+#load_dotenv(os.path.join(BASE_DIR, ".env"))
 API_KEY_OPENAI = os.getenv("OPENAI_API_KEY")
 client = OpenAI(api_key=API_KEY_OPENAI)
 
