@@ -445,8 +445,8 @@ def asistent_chat_phishing(intrebare):
 # --- Funcția de analiză text bazată pe propriul model ---
 def asistent_analiza_text(text_pagina):
     try:
-        # tăiem la ultimele 500 de caractere ca să citim doar ultimul mesaj primit
-        text_scurt = text_pagina[-500:] 
+        # tăiem textul la 4000 de caractere
+        text_scurt = text_pagina[-4000:] 
         
         # 1. Încărcăm modelul antrenat anterior
         cale_model = os.path.join(BASE_DIR, "detector_phishing.pkl")
