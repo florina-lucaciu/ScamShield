@@ -443,30 +443,42 @@ def asistent_chat_phishing(intrebare):
 #        return f"Eroare la analiza textului: {str(e)}"
 
 # --- Funcția de analiză text bazată pe propriul model ---
+# Asigură-te că ai 'import re' la începutul fișierului app.py (lângă import os, json etc.)
+
 def asistent_analiza_text(text_pagina):
     try:
-        # tăiem textul la 4000 de caractere
-        text_scurt = text_pagina[-4000:] 
+        # 1. Extragem textul
+        text_brut = text_pagina[-500:]
         
-        # 1. Încărcăm modelul antrenat anterior
+        # 2. Curățăm textul exact cum s-ar face în faza de antrenare a unui model
+        text_curat = text_brut.lower()
+        # Eliminăm link-urile (TF-IDF este derutat de ele)
+        text_curat = re.sub(r'http\S+|www\.\S+', ' ', text_curat)
+        # Eliminăm emoji-urile și semnele de punctuație ciudate (păstrăm doar litere și cifre)
+        text_curat = re.sub(r'[^\w\s]', ' ', text_curat)
+        # Eliminăm spațiile multiple
+        text_curat = re.sub(r'\s+', ' ', text_curat).strip()
+        
+        print(f"\n--- TEXT CURĂȚAT SPRE MODEL ---\n{text_curat}\n-----------------------------------\n", flush=True)
+        
+        # 3. Încărcăm modelul și prezicem
         cale_model = os.path.join(BASE_DIR, "detector_phishing.pkl")
         if not os.path.exists(cale_model):
-            return "❌ Eroare: Modelul AI local lipsește. Rulează train_model.py întâi!"
+            return "❌ Eroare: Modelul AI local lipsește."
             
         model_propriu = joblib.load(cale_model)
         
-        # 2. prezice statusul textului
-        predictie = model_propriu.predict([text_scurt])[0]
+        # Facem predicția pe textul curățat, nu pe cel brut
+        predictie = model_propriu.predict([text_curat])[0]
         
-        # 3. Returnăm rezultatul
         if predictie == 'legitim':
             return "✅ (ML Local) Textul paginii pare sigur. Nu am detectat tactici de inginerie socială."
         else:
-            return "🚨 ATENȚIE (ML Local): Modelul nostru de Machine Learning a detectat un posibil mesaj de phishing bazat pe vocabularul folosit! Te rugăm să nu oferi date personale și să copii orice link suspect în scannerul de mai sus."
+            return "🚨 ATENȚIE (ML Local): Modelul nostru a detectat un posibil mesaj de phishing bazat pe vocabularul folosit! Copiază link-ul suspect în scanner pentru verificare."
             
     except Exception as e:
         return f"Eroare la analiza textului ML: {str(e)}"
-
+    
 # --- BUCLA PRINCIPALĂ ---
 # while True:
 #     received = get_message()
