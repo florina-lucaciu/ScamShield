@@ -18,6 +18,8 @@ import joblib
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 
+import hashlib
+
 BASE_DIR = os.path.dirname(os.path.abspath(__file__)) # obține calea absolută a directorului în care se află scriptul
 os.chdir(BASE_DIR) # schimbă directorul de lucru curent la BASE_DIR pentru a asigura că toate operațiunile de fișiere se fac în acest director
 REPUTATION_DB_PATH = os.path.join(BASE_DIR, "reputation_database.json") # calea către fișierul care conține reputațiile și scorurile
@@ -576,6 +578,25 @@ def scaneaza():
     except Exception as e:
         sys.stderr.write(f"Eroare API: {str(e)}\n")
         return jsonify({"tip": "final", "echo": f"Eroare server Cloud: {str(e)}"})
+    
+
+# Definim hash-urile oficiale (de pus in envirnonment variable pe render)
+HASH_OFICIAL_APP = os.environ.get("HASH_APP")
+HASH_OFICIAL_POPUP = os.environ.get("HASH_POPUP")
+
+def verifica_integritate_server():
+    with open("app.py", "rb") as f:
+        hash_curent = hashlib.sha256(f.read()).hexdigest()
+    return hash_curent == HASH_OFICIAL_APP
+
+@app.route('/verificare-sistem', methods=['GET'])
+def verificare_sistem():
+    server_ok = verifica_integritate_server()
+    
+    return jsonify({
+        "server_integrity": "OK" if server_ok else "COMPROMISED",
+        "official_popup_hash": HASH_OFICIAL_POPUP
+    })
 
 # --- PORNIRE SERVER ---
 if __name__ == "__main__":
