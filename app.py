@@ -587,6 +587,11 @@ HASH_OFICIAL_POPUP = os.environ.get("HASH_POPUP")
 def verifica_integritate_server():
     with open("app.py", "rb") as f:
         hash_curent = hashlib.sha256(f.read()).hexdigest()
+
+    # printăm hash-ul calculat și cel așteptat pentru a vedea în log-urile de pe Render
+    print(f" [DEBUG] Hash-ul CALCULAT pe Render este: {hash_curent}", flush=True)
+    print(f" [DEBUG] Hash-ul ASTEPTAT din setari este: {HASH_OFICIAL_APP}", flush=True)
+
     return hash_curent == HASH_OFICIAL_APP
 
 @app.route('/verificare-sistem', methods=['GET'])
