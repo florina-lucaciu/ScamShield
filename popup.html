@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Paletă specială pentru lizibilitate și contrast */
+            --bg-exterior: #e2e8f0; /* Gri deschis pentru exterior */
+            --bg-interior: #ffffff; /* Alb curat pentru zona de citire */
+            --text-principal: #1e293b;
+            --text-secundar: #64748b;
+            --primar: #2563eb; /* Albastru modern */
+            --primar-gradient: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            --accent: #f59e0b;
+            --succes: #10b981;
+            --border: #e2e8f0;
+        }
+
+        html, body {
+            width: 400px; /* Ușor mai compactă */
+            margin: 0;
+            padding: 0;
+            font-family: 'Lexend', sans-serif;
+            background-color: var(--bg-exterior);
+            color: var(--text-principal);
+        }
+
+        h3 {
+            margin: 0;
+            font-size: 18px;
+            color: var(--primar);
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        /* --- HEADER & ICONIȚE (Layout Simetric) --- */
+        .header-container {
+            display: flex;
+            justify-content: space-between; /* Împinge elementele la extreme */
+            align-items: center;
+            padding: 15px 20px 0 20px;
+        }
+        
+        /* Zona centrală cu logo și nume */
+        .header-center {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .header-logo {
+            font-size: 20px; /* Dimensiunea logo-ului */
+        }
+
+        .icon-btn {
+            cursor: pointer;
+            font-size: 18px; 
+            transition: transform 0.2s;
+            background: none;
+            border: none;
+            padding: 0;
+            width: 24px; /* Fixăm lățimea ca să fie perfect centrat titlul */
+            text-align: center;
+        }
+        .icon-btn:hover {
+            transform: scale(1.15);
+        }
+
+        /* --- STILURI PENTRU TAB-URI (Tip Switch iOS) --- */
+        .tabs {
+            display: flex;
+            background-color: #cbd5e1;
+            margin: 15px 15px 0 15px;
+            border-radius: 12px;
+            padding: 4px;
+        }
+        .tab-btn {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            color: #475569;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            font-family: 'Lexend', sans-serif;
+        }
+        .tab-btn.active {
+            background-color: var(--bg-interior);
+            color: var(--primar);
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        /* Containerul tip "Card" */
+        .tab-container {
+            background-color: var(--bg-interior);
+            margin: 15px;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* --- STILURI INPUT --- */
+        .input-group {
+            display: flex;
+            gap: 8px; 
+        }
+        input[type="text"] {
+            flex: 1;
+            padding: 12px 14px;
+            border: 2px solid transparent;
+            background-color: #f1f5f9;
+            border-radius: 10px;
+            font-size: 13px;
+            font-family: 'Lexend', sans-serif;
+            outline: none;
+            transition: all 0.2s;
+        }
+        input[type="text"]:focus {
+            background-color: #fff;
+            border-color: var(--primar);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+        
+        /* 1. Noul Albastru pentru butonul Scanează (Lângă input) */
+        #scanUrlBtn {
+            padding: 0 18px;
+            background-color: #475569; /* Un albastru-gri închis, foarte profi */
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        #scanUrlBtn:hover {
+            background-color: #334155;
+            transform: translateY(-1px);
+        }
+
+        /* 2. Stil pentru noua iconiță de setări (SVG) */
+        .settings-svg {
+            fill: #64748b; /* Gri-albăstrui vizibil */
+            transition: fill 0.2s, transform 0.3s;
+        }
+        .icon-btn:hover .settings-svg {
+            fill: #2563eb; /* Se face albastru la hover */
+            transform: rotate(45deg);
+        }
+
+        /* Delimitator fin */
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 18px 0; 
+            color: #94a3b8;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .divider::before, .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* --- STILURI BUTOANE MARI --- */
+        #sendBtn, #scanTextBtn {
+            flex: 1;
+            padding: 12px 5px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            font-family: 'Lexend', sans-serif;
+            text-align: center;
+            transition: transform 0.1s, box-shadow 0.2s;
+        }
+        
+        /* Butonul principal iese în evidență cu un gradient */
+        #sendBtn { 
+            background: var(--primar-gradient); 
+            color: white; 
+            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2);
+        }
+        #sendBtn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(37, 99, 235, 0.3); }
+        #sendBtn:disabled { background: #93c5fd; cursor: not-allowed; box-shadow: none; }
+
+        /* Butonul secundar este mai "liniștit" vizual */
+        /* Butonul secundar (Soft Slate - Calm și elegant) */
+        #scanTextBtn { 
+            background-color: #f1f5f9; 
+            color: #475569; 
+            border: 2px solid #cbd5e1;
+        }
+        #scanTextBtn:hover:not(:disabled) { 
+            background-color: #e2e8f0; 
+            color: #0f172a;
+            border-color: #94a3b8;
+            transform: translateY(-2px); 
+        }
+        #scanTextBtn:disabled { 
+            background-color: #f8fafc; 
+            color: #cbd5e1; 
+            border-color: #e2e8f0; 
+            cursor: not-allowed; 
+        }
+
+        /* --- ZONA DE RĂSPUNS & CHAT --- */
+        #response {
+            margin-top: 20px; 
+            padding: 15px;
+            background: #f8fafc;
+            border-left: 4px solid var(--primar);
+            word-wrap: break-word;
+            border-radius: 10px;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+        #inputError {
+            display: none;
+            color: #b91c1c;
+            font-size: 12px;
+            margin-top: 8px;
+            padding: 10px;
+            background-color: #fef2f2;
+            border-radius: 8px;
+        }
+        
+        #chatHistory {
+            height: 250px; /* Un pic mai înalt să arate a fereastră de chat */
+            overflow-y: auto;
+            border: 2px solid #f1f5f9;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            background-color: #f8fafc; /* Fundal un pic mai gri ca să iasă bulele în evidență */
+            font-size: 13px;
+            line-height: 1.5;
+            display: flex;
+            flex-direction: column; /* Aranjează bulele una sub alta */
+            gap: 12px; /* Spațiu curat între mesaje */
+        }
+        
+        /* Bulele de chat (Stil comun) */
+        .chat-msg { 
+            max-width: 85%;
+            padding: 10px 14px;
+            border-radius: 14px;
+            white-space: pre-wrap;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.04);
+            animation: fadeIn 0.3s ease-out; /* Mică animație finuță la apariție */
+        }
+        
+        /* Bula AI (Se aliniază la stânga) */
+        .msg-ai { 
+            align-self: flex-start;
+            background-color: #ffffff; 
+            color: var(--text-principal);
+            border: 1px solid var(--border);
+            border-bottom-left-radius: 4px; /* Colțul din stânga jos mai ascuțit */
+        }
+        .msg-ai b { color: var(--primar); }
+        
+        /* Bula User (Se aliniază la dreapta) */
+        .msg-user { 
+            align-self: flex-end;
+            background: var(--primar-gradient);
+            color: #ffffff; 
+            border-bottom-right-radius: 4px; /* Colțul din dreapta jos mai ascuțit */
+        }
+        .msg-user b { color: #bfdbfe; } /* Textul 'Tu:' într-un albastru deschis să se vadă bine pe fundalul închis */
+        
+        /* Eroare în chat */
+        .msg-error {
+            align-self: center;
+            background-color: #fef2f2;
+            color: #b91c1c;
+            border: 1px solid #fecaca;
+            font-size: 12px;
+        }
+
+        /* Animația de apariție */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- SETĂRI & INFO --- */
+        #sectiune-setari, #sectiune-info {
+            background-color: var(--bg-interior);
+            margin: 0 15px 15px 15px;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        /* Stil pentru butonul de trimitere chat */
+        #sendChatBtn {
+            background: var(--primar-gradient);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 0 16px;
+            font-family: 'Lexend', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 5px rgba(37, 99, 235, 0.15);
+        }
+
+        #sendChatBtn:hover:not(:disabled) {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+        }
+
+        #sendChatBtn:disabled {
+            background: #94a3b8;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="header-container">
+        <div id="btn-toggle-info" class="icon-btn" title="Ghid de Utilizare">ℹ️</div>
+        
+        <div class="header-center">
+            <span class="header-logo">🛡️</span>
+            <h3>ScamShield</h3>
+        </div>
+
+        <button id="btn-toggle-setari" class="icon-btn" title="Setări">
+            <svg class="settings-svg" width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 15a3 3 0 100-6 3 3 0 000 6z"/>
+                <path fill-rule="evenodd" d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.487 4.471-5.705 7.697-10.677 7.697-4.97 0-9.186-3.223-10.675-7.69a1.762 1.762 0 010-1.113zM17.25 12a5.25 5.25 0 11-10.5 0 5.25 5.25 0 0110.5 0z" clip-rule="evenodd" opacity="0"/>
+                <path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 00.12-.61l-1.92-3.32a.488.488 0 00-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 00-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87a.49.49 0 00.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.49.49 0 00-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32a.49.49 0 00-.12-.61l-2.03-1.58zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/>
+            </svg>
+        </button>
+    </div>
+
+    <div class="tabs">
+        <button class="tab-btn active" data-target="scanTab">🔍 Scanare Link</button>
+        <button class="tab-btn" data-target="chatTab">🤖 Asistent AI</button>
+    </div>
+
+    <div class="tab-container">
+        
+        <div id="scanTab" class="tab-content active">
+            
+            <div class="input-group">
+                <input type="text" id="urlInput" placeholder="Lipește un URL suspect aici..." />
+                <button id="scanUrlBtn">Scanează</button>
+            </div>
+            <div id="inputError"></div>
+            
+            <div class="divider">sau</div>
+            
+            <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                <button id="sendBtn">Scanează tabul curent</button>
+                <button id="scanTextBtn">Analizeaza textul paginii</button>
+            </div>
+            
+            <div id="response" style="display: none;"></div>
+            
+        </div>
+
+        <div id="chatTab" class="tab-content">
+            
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding: 0 5px;">
+                
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <div style="width: 28px; height: 28px; background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 15px;">🤖</div>
+                    <span style="font-size: 13px; font-weight: 600; color: var(--text-principal);">Asistent AI</span>
+                </div>
+                
+                <button id="btn-sterge-chat" style="display: flex; align-items: center; gap: 4px; background: none; border: none; color: #fb7185; cursor: pointer; font-size: 11px; font-family: 'Lexend', sans-serif; font-weight: 500; transition: transform 0.2s, opacity 0.2s;" title="Șterge istoricul">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                        <path d="M16 9v10H8V9h8m-1.5-6h-5l-1 1H5v2h14V4h-3.5l-1-1zM18 7H6v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7z"/>
+                    </svg>
+                    Șterge
+                </button>
+            </div>
+
+            <div id="chatHistory">
+                <div class="chat-msg msg-ai">Salut! Sunt asistentul tău personal de securitate cibernetică. Mă poți întreba orice legat de phishing, parole sigure sau protecția datelor!</div>
+            </div>
+            
+            <div class="input-group" style="margin-bottom: 0;">
+                <input type="text" id="chatInput" placeholder="Ex: Cum îmi dau seama că un email e fals?">
+                <button id="sendChatBtn">Întreabă</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="sectiune-setari" style="display: none;">
+        <hr style="border: 0; border-top: 1px solid #ccc; margin-top: 15px; margin-bottom: 15px;">
+        <div style="padding: 0 5px;">
+            <h4 style="margin-bottom: 5px; margin-top: 0; color: #333;">⚙️ Lista ta de domenii sigure</h4>
+            <p style="font-size: 11px; color: gray; margin-top: 0;">Site-urile adăugate aici vor sări peste verificarea AI.</p>
+            
+            <div style="display: flex; gap: 5px;">
+                <input type="text" id="input-whitelist" placeholder="ex: student.upt.ro" style="flex: 1; padding: 7px; border: 1px solid #ccc; border-radius: 4px;">
+                <button id="btn-adauga-whitelist" style="background-color: #4CAF50; color: white; border: none; cursor: pointer; padding: 7px 12px; border-radius: 4px; font-weight: bold;">Adaugă</button>
+            </div>
+            
+            <ul id="lista-whitelist" style="font-size: 12px; padding-left: 20px; margin-top: 10px; margin-bottom: 0;">
+            </ul>
+        </div>
+    </div> <div id="sectiune-info" style="display: none;">
+        <hr style="border: 0; border-top: 1px solid #ccc; margin-top: 15px; margin-bottom: 15px;">
+        <div style="padding: 0 5px;">
+            <h4 style="margin-bottom: 5px; margin-top: 0; color: #333;">ℹ️ Cum funcționează Scut AI?</h4>
+            <p style="font-size: 12px; color: #555; margin-top: 5px; line-height: 1.5;">
+                <strong>🔍 Scanare Link:</strong> Introdu un link sau analizează site-ul curent. AI-ul verifică certificatele SSL, elementele vizuale (logo-uri furate) și codul paginii.<br><br>
+                <strong>📝 Detector Scam:</strong> Citește mesajele vizibile din pagină pentru a te avertiza dacă folosesc tehnici de manipulare emoțională sau urgență falsă.<br><br>
+                <strong>⚙️ Setări:</strong> Adaugă portalurile sigure pe care le folosești des (ex: intranetul companiei) pentru a sări peste analiză și a economisi timp.
+            </p>
+        </div>
+    <script type="module" src="popup.js"></script>
+</body>
+</html>
