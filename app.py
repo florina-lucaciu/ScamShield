@@ -585,8 +585,15 @@ HASH_OFICIAL_APP = os.environ.get("HASH_APP")
 HASH_OFICIAL_POPUP = os.environ.get("HASH_POPUP")
 
 def verifica_integritate_server():
-    with open("app.py", "rb") as f:
-        hash_curent = hashlib.sha256(f.read()).hexdigest()
+    HASH_OFICIAL_APP = os.environ.get("HASH_APP")
+
+    if not HASH_OFICIAL_APP:
+        return False
+
+    with open("app.py", "r", encoding="utf-8") as f:
+        continut = f.read().replace('\r\n', '\n')
+
+    hash_curent = hashlib.sha256(continut.encode('utf-8')).hexdigest()
 
     # printăm hash-ul calculat și cel așteptat pentru a vedea în log-urile de pe Render
     print(f" [DEBUG] Hash-ul CALCULAT pe Render este: {hash_curent}", flush=True)
