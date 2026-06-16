@@ -195,7 +195,7 @@ def extrage_caracteristici(url, take_screenshot=False):
         
     return (caracteristici, screenshot_base64) if take_screenshot else caracteristici
 
-# ---agentul AI (Vision + Comparație Live) ---
+# agentul AI (Vision + Comparație)
 def agent_ai_analiza(url):
     site_uri_oficiale = {}
     if os.path.exists(BASELINE_DB_PATH):
@@ -212,7 +212,7 @@ def agent_ai_analiza(url):
     site_imitat = "Niciunul"
     incredere_impersonare = 0
 
-    # 2. Vision AI: Identificăm cine este imitat (Cerem direct DOMENIUL)
+    # 2. Vision AI: Identificăm cine este imitat (domeniul)
     domeniu_ai = "necunoscut"
     if base64_image:
         try:
@@ -227,25 +227,25 @@ def agent_ai_analiza(url):
                         ]
                     }
                 ],
-                max_tokens=20 # mai puțini tokeni necesari pentru un simplu domeniu
+                max_tokens=20 # mai puțini tokeni necesari pentru un domeniu
             )
             domeniu_ai = raspuns_vision.choices[0].message.content.strip().lower()
         except Exception as e:
             print(f"🔥 EROARE CRITICĂ VISION AI pt {url}: {str(e)}", flush=True)
 
-    # 3. Găsim site-ul oficial (după domeniu, nu după nume) și extragem datele
+    # 3. găsim site-ul oficial (după domeniu, nu după nume) și extragem datele
     date_reale = None
     url_oficial_curent = ""
     site_imitat = "Niciunul"
 
     if domeniu_ai != "necunoscut":
-        # Verificăm dacă domeniul există în fișierul nostru local
+        # verificăm dacă domeniul există în fișierul nostru local
         for cheie, date in site_uri_oficiale.items():
             if date.get("domeniu_oficial") == domeniu_ai:
                 site_imitat = cheie.replace("_", " ").title() # ex: "Ing Bank"
                 break
         
-        # Chiar dacă exista în fișierul JSON, AI-ul returneaza domeniul
+        # chiar dacă exista în fișierul json, AI-ul returneaza domeniul
         if site_imitat == "Niciunul":
             site_imitat = domeniu_ai 
 
@@ -256,7 +256,7 @@ def agent_ai_analiza(url):
     # generăm data curentă pentru a "trezi" AI-ul la realitate
     data_curenta = datetime.now().strftime("%Y-%m-%d")
 
-    # 4. Promptul Final de Comparație
+    # 4. Promptul de Comparație
     prompt = f"""
             Data curentă a sistemului: {data_curenta}
             Analizează acest URL suspect: {url}
@@ -291,7 +291,7 @@ def agent_ai_analiza(url):
         )
         text_ai = raspuns.choices[0].message.content
 
-        # Parsare câmpuri din răspuns
+        # parsare câmpuri din răspuns
         scor = 50
         status = "suspect"
         motiv = text_ai
@@ -444,7 +444,7 @@ def asistent_chat_phishing(intrebare):
 #    except Exception as e:
 #        return f"Eroare la analiza textului: {str(e)}"
 
-# --- Funcția de analiză text bazată pe propriul model ---
+# --- Funcția de analiză text bazată pe modelul local ---
 def asistent_analiza_text(text_pagina):
     try:
         # tăiem textul la ultimele 500 de caractere
@@ -580,7 +580,7 @@ def scaneaza():
         return jsonify({"tip": "final", "echo": f"Eroare server Cloud: {str(e)}"})
     
 
-# Definim hash-urile oficiale (de pus in envirnonment variable pe render)
+# definim hash-urile oficiale (de pus in envirnonment variable pe render)
 HASH_OFICIAL_APP = os.environ.get("HASH_APP")
 HASH_OFICIAL_POPUP = os.environ.get("HASH_POPUP")
 
@@ -596,8 +596,8 @@ def verifica_integritate_server():
     hash_curent = hashlib.sha256(continut.encode('utf-8')).hexdigest()
 
     # printăm hash-ul calculat și cel așteptat pentru a vedea în log-urile de pe Render
-    print(f" [DEBUG] Hash-ul CALCULAT pe Render este: {hash_curent}", flush=True)
-    print(f" [DEBUG] Hash-ul ASTEPTAT din setari este: {HASH_OFICIAL_APP}", flush=True)
+    #print(f" [DEBUG] Hash-ul CALCULAT pe Render este: {hash_curent}", flush=True)
+    #print(f" [DEBUG] Hash-ul ASTEPTAT din setari este: {HASH_OFICIAL_APP}", flush=True)
 
     return hash_curent == HASH_OFICIAL_APP
 
