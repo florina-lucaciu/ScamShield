@@ -543,7 +543,7 @@ CORS(app) # Permitem extensiei să facă request-uri din browser
 
 @app.route('/', methods=['GET'])
 def health_check():
-    return "Serverul Scut AI este online!", 200
+    return "Serverul ScamShield este online!", 200
 
 @app.route('/scaneaza', methods=['POST'])
 def scaneaza():
