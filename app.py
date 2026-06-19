@@ -81,12 +81,19 @@ def simulate_ai_analysis(url):
     # extragem domeniul din URL (ex: din "https://www.emag.ro/contact")
     domeniu_curent = urlparse(url_lower).netloc.replace("www.", "")
     
-    # Căutăm domeniul în setul global de de site-uri
-    if domeniu_curent in WHITELIST_GLOBAL:
+    # Căutăm domeniul în setul global de site-uri (cu suport pentru subdomenii)
+    este_sigur = False
+    for domeniu_sigur in WHITELIST_GLOBAL:
+        # Verificăm dacă este o potrivire exactă SAU dacă este un subdomeniu (ex: login.bcr.ro)
+        if domeniu_curent == domeniu_sigur or domeniu_curent.endswith("." + domeniu_sigur):
+            este_sigur = True
+            break
+
+    if este_sigur:
         scor_calculat = random.randint(90, 100)
         status = "verificat"
     else:
-        # dacă site-ul nu e în lista albă
+        # dacă site-ul nu e în lista albă, facem analiza pe cuvinte
         cuvinte_suspecte = ['login', 'verify', 'update', 'account', 'secure', 'free', 'crypto', 'password']
         nr_cuvinte_gasite = sum(1 for cuvant in cuvinte_suspecte if cuvant in url_lower)
         
@@ -100,6 +107,7 @@ def simulate_ai_analysis(url):
             scor_calculat = random.randint(51, 89)
             status = "verificat"
     
+    # Penalizăm lipsa certificatului SSL
     if url_lower.startswith("http://"):
         scor_calculat -= 30
         scor_calculat = max(0, scor_calculat)
