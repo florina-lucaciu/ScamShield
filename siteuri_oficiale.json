@@ -66,6 +66,28 @@
             "script": 0
         }
     },
+    "ing_homebank": {
+        "domeniu_oficial": "homebank.ro",
+        "form_actions_sigure": [
+            "/hb/hb/#/login"
+        ],
+        "medie_taguri": {
+            "img": 10,
+            "a": 15,
+            "script": 20
+        }
+    },
+    "bcr_george": {
+        "domeniu_oficial": "login.bcr.ro",
+        "form_actions_sigure": [
+            "/users/login"
+        ],
+        "medie_taguri": {
+            "img": 5,
+            "a": 10,
+            "script": 15
+        }
+    },
     "paypal": {
         "domeniu_oficial": "paypal.com",
         "form_actions_sigure": [],

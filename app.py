@@ -566,15 +566,28 @@ def scaneaza():
         # 3: ANALIZĂ LINK
         if tip_actiune == 'analiza':
             if text_primit.startswith("http") or text_primit.startswith("file://"):
-                # analiza rapidă
+                # 1. Facem un control rapid (euristică + whitelist)
                 scor_rapid, status_rapid = simulate_ai_analysis(text_primit)
                 
-                # analiza cu Playwright și OpenAI
+                # Dacă site-ul e deja în whitelist (scor mare) ne oprim aici
+                if status_rapid == "verificat" and scor_rapid >= 80:
+                    raspuns_final = (
+                        f"✅ VERIFICAT (Whitelist)\n"
+                        f"Scor credibilitate: {scor_rapid}/100\n\n"
+                        f"Site credibil. Acest domeniu este recunoscut oficial ca fiind sigur și aparține listei albe de domenii verificate."
+                    )
+                    return jsonify({
+                        "tip": "final", 
+                        "echo": raspuns_final, 
+                        "scor_rapid": scor_rapid
+                    })
+
+                # 2. Doar dacă site-ul NU e în whitelist folosim Playwright + OpenAI
                 linkuri_de_procesat = [text_primit]
                 mesaje_ai = save_to_json(linkuri_de_procesat)
                 raspuns_final = "\n".join(mesaje_ai)
                 
-                # returnăm direct rezultatul final
+                # Trimitem verdictul final AI înapoi în popup
                 return jsonify({
                     "tip": "final", 
                     "echo": raspuns_final, 
